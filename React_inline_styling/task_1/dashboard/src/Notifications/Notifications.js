@@ -49,11 +49,12 @@ class Notifications extends React.Component {
 						<div className={css(styles.Notifications)}>
 							<ul>
 								{this.props.listNotifications &&
-								this.props.listNotifications.length > 0 ? (
+									this.props.listNotifications.length > 0 ? (
 									this.props.listNotifications.map(
 										({ id, html, type, value }) => (
 											<NotificationItem
 												key={id}
+												id={id}
 												markAsRead={this.markAsRead}
 												type={type}
 												value={value}
@@ -70,7 +71,7 @@ class Notifications extends React.Component {
 												background: 'none',
 											}}
 											aria-label='Close'
-											onClick={console.log('Close button has been clicked')}
+											onClick={() => console.log('Close button has been clicked')}
 										>
 											<img
 												style={{ display: 'inline' }}
