@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './CourseList.css';
 
 const rowStyle = {
     backgroundColor: '#f5f5f5ab',
