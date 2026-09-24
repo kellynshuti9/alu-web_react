@@ -15,6 +15,11 @@ import { getLatestNotification } from '../utils/utils';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      displayDrawer: false,
+    };
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.handleKeydown = this.handleKeydown.bind(this);
   }
 
@@ -27,6 +32,15 @@ class App extends React.Component {
     window.removeEventListener('keydown', this.handleKeydown);
   }
 
+  // Handle Notifications drawer
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+  }
+
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
+  }
+
   // Handle Log out
   handleKeydown(e) {
     if (e.ctrlKey && e.key === 'h') {
@@ -37,6 +51,7 @@ class App extends React.Component {
 
   render() {
     const { isLoggedIn, logOut } = this.props;
+    const { displayDrawer } = this.state;
 
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
@@ -52,7 +67,12 @@ class App extends React.Component {
 
     return (
       <>
-        <Notifications displayDrawer={ false } listNotifications={ listNotifications } />
+        <Notifications
+          displayDrawer={ displayDrawer }
+          handleDisplayDrawer={ this.handleDisplayDrawer }
+          handleHideDrawer={ this.handleHideDrawer }
+          listNotifications={ listNotifications }
+        />
         <div className="App">
           <Header />
           { isLoggedIn ?
