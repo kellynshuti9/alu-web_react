@@ -71,4 +71,22 @@ describe('<App />', () => {
         expect(props.logOut).toHaveBeenCalled();
         window.alert.mockRestore();
     })
+
+    it('verifies that the default state for displayDrawer is false', () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.state().displayDrawer).toEqual(false);
+    });
+
+    it('verifies that after calling handleDisplayDrawer, displayDrawer is true', () => {
+        const wrapper = shallow(<App />);
+        wrapper.instance().handleDisplayDrawer();
+        expect(wrapper.state().displayDrawer).toEqual(true);
+    });
+
+    it('verifies that after calling handleHideDrawer, displayDrawer is false', () => {
+        const wrapper = shallow(<App />);
+        wrapper.instance().handleDisplayDrawer();
+        wrapper.instance().handleHideDrawer();
+        expect(wrapper.state().displayDrawer).toEqual(false);
+    });
 });
